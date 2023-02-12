@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block title %}Skrzynka{% endblock %}
+
+{% block content %}
+    <h1 class="mb-8 text-3xl text-center mt-8">Twoje rozmowy</h1>
+
+    <div class="space-y-6 ">
+        {% for conversation in conversations %}
+            <a href="{% url 'conversation:detail' conversation.id %}">
+                <div class="p-6 flex bg-gray-100 rounded-xl hover:bg-green-100 mb-6">
+                    <div class="pr-6">
+                        <img src="{{ conversation.item.image.url }}" alt="" class="w-20 rounded-xl">
+                    </div>
+
+                    <div>
+                        {% for member in conversation.members.all %}
+                            {% if member != request.user %}
+                                <p class="mb-4">Rozmowa z: <strong>{{ member.username }}</strong></p>
+                                <p class="mb-4">Ostatnia wiadomość: <strong> {{ conversation.last_message.created_at }} </strong></p>
+                                <p>Przedmiot: <strong>{{ conversation.item.name }}</strong></p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

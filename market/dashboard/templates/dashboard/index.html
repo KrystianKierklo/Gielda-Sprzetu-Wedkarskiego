@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Zarządzanie ogłoszeniami{% endblock %}
+
+{% block content %}
+
+	<div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
+		<h2 class="mb-12 text-2xl text-center">Moje ogłoszenia</h2>
+
+		<div class="grid grid-cols-8 gap-8 ">
+			{% for item in items %}
+				<div class="itemek bg-white rounded-b-xl rounded-t-xl overflow-hidden">
+					<a href="{% url 'item:detail' item.id %}">
+						<div class="">
+							<img src="{{ item.image.url }}" alt="" class="zdjecie">
+						</div>
+
+						<div class="p-6 img_info">
+							<h2 class="text-xs">{{ item.name }}</h2>
+							<p class="text-gray-500 text-xs">Cena: {{ item.price }} zł</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+        <p class="text-gray-500 text-xs mt-8 info_ilosc_produktow">Liczba twoich ogłoszeń: {{ my_items_count }}</p>
+	</div>
+
+    <div class="mt-8 px-1 py-1 bg-gray-200 rounded-xl ">
+		<h2 class=" text-xl text-center">Moje archiwalne ogłoszenia</h2>
+
+		<div class="grid grid-cols-10 gap-0 ">
+			{% for item in items_sold %}
+				<div class="bg-white rounded-b-xl rounded-t-xl overflow-hidden pole">
+					<a href="{% url 'item:detail' item.id %}">
+						<div class="">
+							<img src="{{ item.image.url }}" alt="" class="zdjecie">
+						</div>
+
+						<div class="p-1 img_info">
+							<h2 class="text-xs">{{ item.name }}</h2>
+							<p class="text-gray-500 text-xs">Cena: {{ item.price }} zł</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+        <p class="text-gray-500 text-xs mt-1 info_ilosc_produktow">Razem: {{ items_sold_count }}</p>
+	</div>
+{% endblock %}

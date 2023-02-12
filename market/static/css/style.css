@@ -1,0 +1,94 @@
+.zdjecie {
+  max-height: 140px;
+  max-width: 140px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.img_info {
+  height: 30%;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.itemek {
+  min-height: 200px;
+  transition: scale 0.4s;
+}
+
+.itemek:hover {
+  scale: 1.2;
+}
+
+.fotka-detail {
+  scale: 0.8;
+}
+
+.kategorie {
+  text-align: center;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.right-logo {
+  transform: scaleX(-1);
+}
+
+.logo-contener {
+  display: flex;
+  justify-content: space-between;
+}
+
+.register-btn, .addItem-btn, .search-btn, .ask-btn {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.info_ilosc_produktow {
+  text-align: center;
+}
+
+.pole {
+  scale: 0.6;
+}
+
+.number_field {
+  width: 25px;
+  height: 25px;
+  background-color: rgba(77, 212, 99, 0.5);
+  border-radius: 10%;
+  font-weight: bold;
+}
+
+.number_field2 {
+  width: 25px;
+  height: 25px;
+  background-color: rgba(240, 56, 56, 0.5);
+  border-radius: 10%;
+  font-weight: bold;
+}
+
+.btn-page-select-next {
+  color: blue;
+  font-weight: bold;
+  transition: scale, 0.3s;
+  padding-left: 10px;
+}
+
+.btn-page-select-prev {
+  color: blue;
+  font-weight: bold;
+  transition: scale, 0.3s;
+  padding-right: 10px;
+}
+
+.btn-page-select-next:hover {
+  scale: 1.5;
+}
+
+.btn-page-select-prev:hover {
+  scale: 1.5;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://kit.fontawesome.com/b5129f6c17.js" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="../../../static/css/style.css">
+		<link rel="shortcut icon" type="image/x-icon" href="../../../static/img/logo32.png">
+
+		<title>{% block title %}{% endblock %} | Giełda</title>
+	</head>
+	<body>
+		<nav class="py-6 px-6 flex justify-between items-center border-b-2 border-gray-200">
+			<a href="/" class="text-base font-semibold logo-contener">
+				<img src="../../../static/img/logo.png" alt="logo" class="logo left-logo"> 
+				<p class="py-4">Giełda sprzętu wędkarskiego</p> 
+				<img src="../../../static/img/logo.png" alt="logo" class="logo right-logo">
+			</a>
+
+			<div class="space-x-6">
+				<a href="{% url 'item:addNewItem' %}" class="text-base font-semibold hover:text-gray-500">
+					<i class="fa-solid fa-plus"></i> Dodaj ogłoszenie
+				</a>
+				<a href="{% url 'item:items' %}" class="text-base font-semibold hover:text-gray-500">
+					<i class="fa-solid fa-magnifying-glass"></i> Szukaj
+				</a>
+
+				{% if request.user.is_authenticated %}
+
+					<a href="{% url 'conversation:inbox' %}" class="px-1 py-3 text-base font-semibold rounded-xl hover:text-gray-500">
+						<i class="fa-regular fa-message"></i> Wiadomości
+					</a>
+
+					<a href="{% url 'dashboard:index' %}" class="px-1 py-3 text-base font-semibold rounded-xl hover:text-gray-500">
+						<i class="fa-solid fa-pen-to-square"></i> Zarządzaj ogłoszeniami
+					</a>
+
+					<a href="{% url 'core:logout' %}" class="px-6 py-3 text-base font-semibold rounded-xl text-white bg-red-400 hover:bg-red-500">
+						Wyloguj się
+					</a>
+
+				{% else %}
+					<a href="{% url 'core:login' %}" class="px-6 py-3 text-base font-semibold bg-sky-300 text-white rounded-xl hover:bg-sky-400">
+						Zaloguj się
+					</a>
+
+					<a href="{% url 'core:signup' %}" class="px-6 py-3 text-base font-semibold bg-orange-300 text-white rounded-xl hover:bg-orange-400">
+						Zarejestruj się
+					</a>
+				{% endif %}
+			</div>
+
+
+		</nav>
+		<div class="px-6 mb-6 min-h-screen">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+		<footer class="text-xl py-4 px-4 flex justify-center bg-gray-800 h-auto stopka">
+			<div class="">
+				<h3 class="font-semibold text-gray-400 ">
+					&copy KrystianKierklo 2023
+					<a href="https://github.com/KrystianKierklo" target="_blank" class="hover:text-orange-500">
+						<i class="fa-brands fa-github text-2xl"></i>
+					</a>
+				</h3>
+			</div>
+		</footer>
+	</body>
+</html>

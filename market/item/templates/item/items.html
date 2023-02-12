@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Ogłoszenia{% endblock %}
+
+{% block content %}
+    <div class="pb-6 grid grid-cols-5 gap-4 ">
+        <div class="col-span-1">
+            <form action="{% url 'item:items' %}" method="get">
+                <input type="text" name="query" class="w-full py-4 px-6 border rounded-xl mt-6" value="{{ query }}" placeholder="Wyszukaj produkt">
+                <button class="mt-2 py-3 px-4 text-base bg-teal-500 text-white rounded-xl search-btn">Szukaj</button>
+            </form>
+
+            <hr class="my-4">
+            <p class="font-semibold text-center">Wybór kategorii</p>
+            <ul>
+                {% for category in categories %}
+                    <li class="py-2 px-2 rounded-xl {% if category.id == category_id %} bg-gray-200 {% endif %}">
+                        <a href="{% url 'item:items' %}?query={{ query }}&category={{category.id}}">{{category.name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <hr class="">
+
+
+            <ul>
+                <li>
+                    <a href="{% url 'item:items' %}" class="mt-2 py-3 px-4 inline-block bg-yellow-500 text-base rounded-xl text-white search-btn">
+                        Wyczyść filtry
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-span-4">
+            <div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
+                <h2 class="mb-4 text-2xl text-center">Znalezione ogłoszenia</h2>
+                <p class="text-gray-500 text-xs mb-12 mt-0 info_ilosc_produktow">Liczba znalezionych ogłoszeń: {{ items_count }}</p>
+        
+                <div class="grid grid-cols-5 gap-8 ">
+                    {% for item in items %}
+                        <div class="itemek bg-white rounded-b-xl rounded-t-xl overflow-hidden">
+                            <a href="{% url 'item:detail' item.id %}">
+                                <div class="">
+                                    <img src="{{ item.image.url }}" alt="" class="zdjecie">
+                                </div>
+        
+                                <div class="p-6 img_info">
+                                    <h2 class="text-xs">{{ item.name }}</h2>
+                                    <p class="text-gray-500 text-xs">Cena: {{ item.price }} zł</p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="text-center">{% include 'item/pagination.html' with page=items %}</div>
+        </div>
+    </div>
+{% endblock %}

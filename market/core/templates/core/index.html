@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Strona główna{% endblock %}
+
+{% block content %}
+<div class="mt-6 px-6 py-3 bg-gray-200 rounded-xl">
+	<h2 class="mb-4 text-2xl text-center">Kategorie</h2>
+
+	<div class="grid grid-cols-9 gap-3 kategorie">
+		{% for category in categories %}
+				<div class="bg-white rounded-b-xl rounded-t-xl overflow-hidden hover:bg-sky-300">
+					<a href="{% url 'item:items' %}?query={{ query }}&category={{category.id}}">
+						<div class="p-1">
+							<h2 class="text-xl">{{ category.name }}</h2>
+							<!-- <p class="text-gray-500 text-xs">Ogłoszeń: {{ items.count }}</p> -->
+						</div>
+					</a>
+				</div>
+
+		{% endfor %}
+	</div>
+	<p class="text-gray-500 text-xs mt-8 info_ilosc_produktow">Łącznie znajdziesz: {{item_count}} ogłoszeń</p>
+</div>
+
+
+	<div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
+		<h2 class="mb-12 text-2xl text-center">Ostatnio dodane ogłoszenia:</h2>
+
+		<div class="grid grid-cols-8 gap-8 ">
+			{% for item in items %}
+				<div class="itemek bg-white rounded-b-xl rounded-t-xl overflow-hidden">
+					<a href="{% url 'item:detail' item.id %}">
+						<div class="">
+							<img src="{{ item.image.url }}" alt="" class="zdjecie">
+						</div>
+
+						<div class="p-6 img_info">
+							<h2 class="text-xs">{{ item.name }}</h2>
+							<p class="text-gray-500 text-xs">Cena: {{ item.price }} zł</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
