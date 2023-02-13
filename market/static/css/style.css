@@ -91,4 +91,30 @@
 
 .btn-page-select-prev:hover {
   scale: 1.5;
+}
+
+.main-photo {
+  margin-top: 15px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../static/img/fishing-1572408_960_720.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  width: 100%;
+  height: 600px;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  position: relative;
+  border-radius: 5%;
+}
+.main-photo .title {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  font-size: 55px;
+  color: white;
+  z-index: 10;
+  text-align: center;
+  font-weight: bold;
+}
+.main-photo .title .motto {
+  font-size: 25px;
 }/*# sourceMappingURL=style.css.map */
